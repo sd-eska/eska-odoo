@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="estate.TodoList">
+        <div class="o_todo_list mt-4 p-3 border rounded bg-light shadow-sm">
+            <h4 class="mb-3 text-primary font-weight-bold">Yapılacaklar Listesi</h4>
+            
+            <div class="input-group mb-3">
+                <input type="text" 
+                       class="form-control" 
+                       placeholder="Enter a new task..." 
+                       t-on-keyup="addTodo"
+                       autofocus="true"/>
+            </div>
+
+            <div class="o_todo_items">
+                <div t-foreach="todos" t-as="todo" t-key="todo.id">
+                    <TodoItem todo="todo"/>
+                </div>
+            </div>
+
+            <div t-if="todos.length == 0" class="text-center p-4 bg-white rounded border border-dashed text-muted mt-2">
+                <i class="fa fa-list-check d-block mb-2 font-size-large"></i>
+                Daha yapılacak bir iş yok! Başlamak için yukarıya bir görev yazın.
+            </div>
+        </div>
+    </t>
+</templates>

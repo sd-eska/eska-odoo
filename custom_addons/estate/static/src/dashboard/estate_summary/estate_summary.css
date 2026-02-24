@@ -1,0 +1,15 @@
+.o_dashboard {
+    background-color: #a3a3a3;
+    /* Standart Odoo gri tonu */
+}
+
+.o_dashboard h2 {
+    font-weight: 700;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .o_dashboard .p-4 {
+        padding: 1rem !important;
+    }
+}

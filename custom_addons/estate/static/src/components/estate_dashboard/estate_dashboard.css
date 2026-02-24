@@ -1,0 +1,19 @@
+.o_estate_dashboard {
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.o_estate_dashboard h1 {
+    font-weight: 700;
+}
+
+.o_estate_dashboard .btn-primary {
+    transition: all 0.3s ease;
+}
+
+.o_estate_dashboard .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+}

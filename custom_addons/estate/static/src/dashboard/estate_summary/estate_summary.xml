@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="estate.EstateSummary">
+        <Layout className="'o_dashboard h-100'" display="display">
+            <t t-set-slot="control-panel-create-button">
+                <button class="btn btn-primary" t-on-click="openCustomers">
+                    Customers
+                </button>
+            </t>
+            <t t-set-slot="layout-buttons">
+                <button class="btn btn-secondary ms-1" t-on-click="openLeads">
+                    Leads
+                </button>
+                <button class="btn btn-outline-secondary ms-1" t-on-click="openConfiguration">
+                    <i class="fa fa-gear"/>
+                </button>
+            </t>
+            <div class="p-4 d-flex flex-wrap align-items-start">
+                <t t-foreach="filteredItems" t-as="item" t-key="item.id">
+                    <DashboardItem size="item.size || 1">
+                        <t t-set="itemProps" t-value="item.props ? item.props(stats.data, this.action) : { data: stats.data }"/>
+                        <t t-component="item.Component" t-props="itemProps"/>
+                    </DashboardItem>
+                </t>
+            </div>
+        </Layout>
+    </t>
+</templates>

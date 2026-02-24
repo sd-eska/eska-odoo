@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="estate.PieChart">
+        <div class="o_pie_chart w-100 d-flex flex-column align-items-center">
+            <h5 t-if="props.label" class="mb-3"><t t-esc="props.label"/></h5>
+            <div style="height: 300px; width: 100%; position: relative;">
+                <canvas t-ref="canvas"></canvas>
+            </div>
+        </div>
+    </t>
+</templates>

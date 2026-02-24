@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_picking_form_inherit_uts" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit.uts</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_uts_verme_bildirimi" 
+                        string="ÜTS'ye Bildir" 
+                        type="object" 
+                        class="oe_highlight" 
+                        invisible="state != 'done' or picking_type_code != 'outgoing' or uts_sync_state == 'sent'"/>
+            </xpath>
+            <xpath expr="//field[@name='picking_type_id']" position="after">
+                <field name="uts_sync_state" widget="badge" 
+                       decoration-info="uts_sync_state == 'pending'"
+                       decoration-success="uts_sync_state == 'sent'"
+                       decoration-danger="uts_sync_state == 'failed'"
+                       invisible="picking_type_code != 'outgoing'"/>
+                <field name="uts_last_response" invisible="not uts_last_response or picking_type_code != 'outgoing'"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

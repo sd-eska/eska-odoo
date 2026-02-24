@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Test Model Menu -->
+    <menuitem id="menu_test_model" 
+              name="Test Modelleri" 
+              parent="menu_todo_root" 
+              action="action_test_model" 
+              sequence="20"/>
+</odoo>

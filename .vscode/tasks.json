@@ -1,0 +1,78 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Odoo: Başlat",
+            "type": "shell",
+            "command": "bash /home/arch/odoo/odoo.sh start",
+            "options": {
+                "cwd": "/home/arch/odoo"
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "clear": true
+            }
+        },
+        {
+            "label": "Odoo: Yeniden Başlat",
+            "type": "shell",
+            "command": "bash /home/arch/odoo/odoo.sh restart",
+            "options": {
+                "cwd": "/home/arch/odoo"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "clear": true
+            }
+        },
+        {
+            "label": "Odoo: Aktif Modülü Güncelle (uts_integration)",
+            "type": "shell",
+            "command": "bash /home/arch/odoo/odoo.sh update",
+            "options": {
+                "cwd": "/home/arch/odoo"
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "clear": true
+            }
+        },
+        {
+            "label": "Odoo: Tüm Custom Modülleri Güncelle (custom_addons/)",
+            "type": "shell",
+            "command": "bash /home/arch/odoo/odoo.sh update-custom",
+            "options": {
+                "cwd": "/home/arch/odoo"
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "clear": true
+            }
+        },
+        {
+            "label": "Odoo: Durdur (Kill)",
+            "type": "shell",
+            "command": "bash /home/arch/odoo/odoo.sh kill",
+            "options": {
+                "cwd": "/home/arch/odoo"
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "silent",
+                "panel": "shared"
+            }
+        }
+    ]
+}

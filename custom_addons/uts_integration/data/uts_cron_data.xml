@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- 
+            ÜTS Cron Job'ları devre dışı bırakıldı.
+            Sistem artık event-driven çalışıyor:
+            Kullanıcı "ÜTS'ye Bildir" butonuna basınca doğrudan gönderim yapılır.
+            Cron'a gerek yoktur.
+        -->
+        <record id="ir_cron_process_uts_uretim" model="ir.cron">
+            <field name="name">ÜTS: Üretim Bildirimlerini İşle</field>
+            <field name="active" eval="False"/>
+        </record>
+
+        <record id="ir_cron_process_uts_verme" model="ir.cron">
+            <field name="name">ÜTS: Verme Bildirimlerini İşle</field>
+            <field name="active" eval="False"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="estate.ConfigurationDialog">
+        <Dialog title="'Dashboard Configuration'" size="'md'">
+            <div class="o_dashboard_config">
+                <!-- foreach -->
+                <t t-foreach="props.items" t-as="item" t-key="item.id">
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" 
+                               t-att-id="item.id" 
+                               t-att-checked="state.enabledItems.includes(item.id) ? 'checked' : undefined"
+                               t-on-change="() => this.toggleItem(item.id)"/>
+                        <label class="form-check-label" t-att-for="item.id">
+                            <t t-esc="item.description"/>
+                        </label>
+                    </div>
+                </t>
+            </div>
+            <t t-set-slot="footer">
+                <button class="btn btn-primary" t-on-click="onApply">Apply</button>
+                <button class="btn btn-secondary" t-on-click="props.close">Cancel</button>
+            </t>
+        </Dialog>
+    </t>
+</templates>

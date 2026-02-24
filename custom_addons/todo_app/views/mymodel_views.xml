@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 1. Ağaç (Liste) Görünümü -->
+    <record id="view_test_model_tree" model="ir.ui.view">
+        <field name="name">test.model.tree</field>
+        <field name="model">test.model</field>
+        <field name="arch" type="xml">
+            <tree string="Test Modeli Liste">
+                <field name="name"/>
+                <field name="bedrooms"/>
+                <field name="expected_price"/>
+                <field name="availability_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- 2. Form (Detay) Görünümü -->
+    <record id="view_test_model_form" model="ir.ui.view">
+        <field name="name">test.model.form</field>
+        <field name="model">test.model</field>
+        <field name="arch" type="xml">
+            <form string="Test Modeli Detay">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="bedrooms"/>
+                        </group>
+                        <group>
+                            <field name="expected_price"/>
+                            <field name="availability_date"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- 3. Aksiyon (Tıklayınca ne olsun?) -->
+    <record id="action_test_model" model="ir.actions.act_window">
+        <field name="name">Test Modeli</field>
+        <field name="res_model">test.model</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                İlk test kaydınızı oluşturun!
+            </p>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="estate.Card">
+        <div class="card o_estate_card shadow-sm m-2" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title text-primary font-weight-bold">
+                    <t t-esc="props.title"/>
+                </h5>
+                <h6 class="card-subtitle mb-2 text-muted">Öne Çıkan Özellik</h6>
+                <div class="card-text">
+                    <t t-out="props.content"/>
+                </div>
+                <a href="#" class="btn btn-sm btn-primary">İncele</a>
+            </div>
+        </div>
+    </t>
+</templates>

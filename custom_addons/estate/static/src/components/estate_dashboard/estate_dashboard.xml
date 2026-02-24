@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="estate.EstateDashboard">
+        <div class="h-100 o_estate_dashboard bg-light overflow-auto">
+            <div class="p-5 text-center bg-white shadow-sm border-bottom">
+                <h1 class="display-10 text-primary mb-4 fw-bold">
+                    <t t-esc="state.message"/>
+                </h1>
+                
+                <h3 class="mb-4">Toplam Sayaç Tıklaması: <t t-esc="state.sum"/></h3>
+
+                <div class="d-flex justify-content-center mb-5 gap-3">
+                    <Counter onChange.bind="incrementSum"/>
+                    <Counter onChange.bind="incrementSum"/>
+                </div>
+            </div>
+
+            <div class="container p-4">
+                <div class="row">
+                    <div class="col-md-4">
+                        <TodoList/>
+                    </div>
+                    <div class="col-md-8">
+                        <h2 class="text-secondary mb-4 border-bottom pb-2">Öne Çıkan Mülkler</h2>
+                        <div class="d-flex flex-wrap justify-content-start gap-2">
+                            <Card title="'Güvenli (Markup)'" content="state.safeHtml"/>
+                            <Card title="'Güvenli Değil (String)'" content="state.unseenHtml"/>
+                            <Card title="'Boğaz Manzaralı Villa'" content="'Harika bir deniz manzarasına sahip, geniş bahçeli lüks villa.'"/>
+                            <Card title="'Şehir Merkezi Daire'" content="'Metrobüse yürüme mesafesinde, modern tasarımlı 2+1 daire.'"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center p-4">
+                <p class="small text-muted">
+                    Odoo 17 + OWL Framework (Todo List Implementation)
+                </p>
+            </div>
+        </div>
+    </t>
+</templates>

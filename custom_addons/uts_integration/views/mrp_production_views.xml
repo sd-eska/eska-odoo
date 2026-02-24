@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_mrp_production_form_inherit_uts" model="ir.ui.view">
+        <field name="name">mrp.production.form.inherit.uts</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_uts_uretim_bildirimi" 
+                        string="ÜTS'ye Bildir" 
+                        type="object" 
+                        class="oe_highlight" 
+                        invisible="not product_id or not product_id.is_uts_tracked or state != 'done' or uts_sync_state == 'sent'"/>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="uts_sync_state" widget="badge" 
+                       decoration-info="uts_sync_state == 'pending'"
+                       decoration-success="uts_sync_state == 'sent'"
+                       decoration-danger="uts_sync_state == 'failed'"/>
+                <field name="uts_last_response" invisible="not uts_last_response"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

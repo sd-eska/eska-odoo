@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ==================== ARAMA GÖRÜNÜMÜ ==================== -->
+    <record id="view_uts_log_search" model="ir.ui.view">
+        <field name="name">uts.log.search</field>
+        <field name="model">uts.log</field>
+        <field name="arch" type="xml">
+            <search string="ÜTS Bildirimleri Ara">
+                <field name="name" string="İşlem Tipi"/>
+                <field name="res_model" string="Model"/>
+                <separator/>
+                <filter name="filter_success" string="Başarılı" domain="[('state', '=', 'success')]"/>
+                <filter name="filter_failed"  string="Hatalı"   domain="[('state', '=', 'failed')]"/>
+                <separator/>
+                <filter name="filter_today" string="Bugün"
+                        domain="[('create_date', '>=', datetime.datetime.combine(context_today(), datetime.time(0,0,0)))]"/>
+                <filter name="filter_week" string="Bu Hafta"
+                        domain="[('create_date', '>=', (context_today() - datetime.timedelta(days=7)).strftime('%Y-%m-%d'))]"/>
+                <group expand="0" string="Gruplama">
+                    <filter name="group_by_state"  string="Duruma Göre"  context="{'group_by': 'state'}"/>
+                    <filter name="group_by_name"   string="İşlem Tipine Göre" context="{'group_by': 'name'}"/>
+                    <filter name="group_by_date"   string="Tarihe Göre"  context="{'group_by': 'create_date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ==================== LİSTE GÖRÜNÜMÜ ==================== -->
+    <record id="view_uts_log_tree" model="ir.ui.view">
+        <field name="name">uts.log.tree</field>
+        <field name="model">uts.log</field>
+        <field name="arch" type="xml">
+            <tree string="ÜTS Bildirimleri"
+                  decoration-danger="state == 'failed'"
+                  decoration-success="state == 'success'"
+                  create="false">
+                <field name="create_date" string="Tarih"/>
+                <field name="name" string="İşlem"/>
+                <field name="summary" string="Özet"/>
+                <field name="state" widget="badge"
+                       decoration-danger="state == 'failed'"
+                       decoration-success="state == 'success'"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- ==================== FORM GÖRÜNÜMÜ ==================== -->
+    <record id="view_uts_log_form" model="ir.ui.view">
+        <field name="name">uts.log.form</field>
+        <field name="model">uts.log</field>
+        <field name="arch" type="xml">
+            <form string="ÜTS Bildirim Detayı" create="false">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Genel Bilgiler">
+                            <field name="create_date" string="İşlem Tarihi" readonly="1"/>
+                            <field name="state" widget="badge" readonly="1"
+                                   decoration-danger="state == 'failed'"
+                                   decoration-success="state == 'success'"/>
+                            <field name="status_code" string="Durum Kodu" readonly="1"/>
+                        </group>
+                        <group string="İşlem Sonucu">
+                            <field name="summary" nolabel="1" colspan="2" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <!-- Teknik Detaylar: Sadece Geliştirici Modunda Görünür -->
+                    <notebook groups="base.group_no_one">
+                        <page string="Teknik Veriler (Developer Only)">
+                            <group>
+                                <field name="res_model" readonly="1"/>
+                                <field name="res_id"    readonly="1"/>
+                            </group>
+                            <separator string="Giden Veri"/>
+                            <field name="request_data"  widget="text" readonly="1"/>
+                            <separator string="Gelen Yanıt"/>
+                            <field name="response_data" widget="text" readonly="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ==================== AKSİYON ==================== -->
+    <record id="action_uts_log" model="ir.actions.act_window">
+        <field name="name">ÜTS Bildirimleri</field>
+        <field name="res_model">uts.log</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_uts_log_search"/>
+        <field name="context">{'search_default_filter_failed': 0}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Henüz bir ÜTS bildirimi bulunmuyor.
+            </p>
+        </field>
+    </record>
+
+    <!-- ==================== MENÜLER ==================== -->
+    <menuitem id="menu_uts_root" name="ÜTS Entegrasyonu" sequence="100"/>
+    <menuitem id="menu_uts_logs" name="Bildirim Geçmişi" parent="menu_uts_root" action="action_uts_log" sequence="10"/>
+
+    <!-- Kısayollar -->
+    <menuitem id="menu_mrp_uts_logs" name="ÜTS Geçmişi" parent="mrp.menu_mrp_reporting" action="action_uts_log" sequence="100"/>
+    <menuitem id="menu_stock_uts_logs" name="ÜTS Geçmişi" parent="stock.menu_warehouse_config" action="action_uts_log" sequence="100"/>
+</odoo>

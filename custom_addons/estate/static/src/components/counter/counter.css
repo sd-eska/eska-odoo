@@ -1,0 +1,8 @@
+.o_estate_counter {
+    min-width: 120px;
+}
+
+.o_estate_counter h3 {
+    font-size: 2rem;
+    font-weight: bold;
+}
