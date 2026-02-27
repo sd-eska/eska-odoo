@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Bildirim Sorgula Wizard Form -->
+    <record id="view_uts_bildirim_sorgu_form" model="ir.ui.view">
+        <field name="name">uts.bildirim.sorgu.form</field>
+        <field name="model">uts.bildirim.sorgu</field>
+        <field name="arch" type="xml">
+            <form string="ÜTS Bildirim Sorgula">
+                <group>
+                    <group string="Arama Kriterleri">
+                        <field name="uno" placeholder="Ürün barkodu"/>
+                        <field name="lno" placeholder="Lot numarası"/>
+                        <field name="sno" placeholder="Seri numarası"/>
+                        <field name="kayit_sayisi"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_sorgula" string="Sorgula" type="object" class="oe_highlight"/>
+                    <button name="action_sonraki_sayfa" string="Sonraki Sayfa →" type="object"
+                            invisible="not offset" class="btn-secondary"/>
+                    <button string="Kapat" class="btn-secondary" special="cancel"/>
+                    <field name="offset" invisible="1"/>
+                </footer>
+                <field name="sonuc_ids" nolabel="1" readonly="1">
+                    <tree string="Bildirim Sonuçları" editable="bottom">
+                        <field name="bildirim_tipi" string="Tip"/>
+                        <field name="bildirim_durumu" string="Durum"
+                               decoration-success="bildirim_durumu == 'AKTIF'"
+                               decoration-danger="bildirim_durumu == 'IPTAL'"
+                               decoration-info="bildirim_durumu == 'ALINDI'"
+                               widget="badge"/>
+                        <field name="uno" string="UNO"/>
+                        <field name="lno" string="LNO" optional="show"/>
+                        <field name="sno" string="SNO" optional="show"/>
+                        <field name="adt" string="Adet"/>
+                        <field name="bno" string="Belge No" optional="show"/>
+                        <field name="bildirim_kodu" string="BID"/>
+                        <field name="bildirim_zamani" string="Tarih"/>
+                        <field name="kun" string="Kurum No" optional="hide"/>
+                        <field name="git" string="İşlem Tarihi" optional="hide"/>
+                    </tree>
+                </field>
+            </form>
+        </field>
+    </record>
+
+    <!-- Menu Action -->
+    <record id="action_uts_bildirim_sorgu" model="ir.actions.act_window">
+        <field name="name">ÜTS Bildirim Sorgula</field>
+        <field name="res_model">uts.bildirim.sorgu</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Alt menüye ekle (ÜTS Config kategorisinde) -->
+    <menuitem id="menu_uts_bildirim_sorgu"
+              name="Bildirim Sorgula"
+              parent="uts_integration.menu_uts_root"
+              action="action_uts_bildirim_sorgu"
+              sequence="20"/>
+</odoo>

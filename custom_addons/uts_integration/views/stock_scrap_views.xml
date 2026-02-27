@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stock_scrap_form_uts" model="ir.ui.view">
+        <field name="name">stock.scrap.form.uts</field>
+        <field name="model">stock.scrap</field>
+        <field name="inherit_id" ref="stock.stock_scrap_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_uts_hek_bildirimi"
+                        string="ÜTS HEK Bildir"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="state != 'done' or uts_sync_state == 'sent'"/>
+            </xpath>
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="uts_sync_state" widget="badge" 
+                       decoration-success="uts_sync_state == 'sent'" 
+                       decoration-danger="uts_sync_state == 'failed'" 
+                       decoration-info="uts_sync_state == 'draft'"/>
+                <field name="uts_scrap_reason" invisible="uts_sync_state == 'sent'"/>
+                <field name="uts_description" placeholder="Örn: Kırıldı, TST geçti..." 
+                       invisible="uts_sync_state == 'sent' or uts_scrap_reason != 'DIGER'"
+                       required="uts_scrap_reason == 'DIGER'"/>
+                <field name="uts_last_response" invisible="uts_sync_state == 'draft'"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

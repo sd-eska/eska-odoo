@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ÜTS sütunlarını Stok Hareket Satırları (Hareket Geçmişi) listesine ekle -->
+    <record id="view_move_line_tree_inherit_uts" model="ir.ui.view">
+        <field name="name">stock.move.line.tree.inherit.uts</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <field name="uts_gonderildi"
+                       string="ÜTS"
+                       widget="boolean_toggle"
+                       optional="show"
+                       readonly="1"/>
+                <field name="uts_bildirimi_tipi"
+                       string="Bildirim Tipi"
+                       optional="show"
+                       widget="badge"
+                       decoration-success="uts_bildirimi_tipi in ('uretim', 'alim')"
+                       decoration-info="uts_bildirimi_tipi in ('verme', 'tanimsiz_verme', 'tuketici_verme', 'kozmetik_verme', 'ihracat')"
+                       decoration-warning="uts_bildirimi_tipi == 'hek'"
+                       decoration-danger="uts_bildirimi_tipi in ('tuketiciden_iade', 'tanimsiz_yerden_iade')"/>
+                <field name="uts_kayit_no"
+                       string="ÜTS Kayıt No"
+                       optional="show"/>
+                <field name="uts_bildirim_kodu"
+                       string="Bildirim Kodu (BID)"
+                       optional="hide"/>
+                <field name="uts_kayit_tarihi"
+                       string="ÜTS Kayıt Tarihi"
+                       optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

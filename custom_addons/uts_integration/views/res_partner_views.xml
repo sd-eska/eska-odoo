@@ -5,8 +5,22 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
+            <!-- Üst formdaki Tax ID etiketini Türkçeleştir -->
+            <xpath expr="//field[@name='vat']" position="attributes">
+                <attribute name="string">Vergi Kimlik No (VKN)</attribute>
+                <attribute name="placeholder">ÜTS tanımsız yere verme için VKN girin</attribute>
+            </xpath>
+
+            <!-- ÜTS alanları: Satış & Satınalma → Çeşitli bölümüne ekle -->
             <xpath expr="//page[@name='sales_purchases']//group[@name='misc']" position="inside">
                 <field name="uts_institution_no"/>
+                <field name="uts_tc_kimlik_no" 
+                       placeholder="11 haneli T.C. Kimlik No"
+                       invisible="is_company == True"/>
+                <field name="uts_verme_turu" widget="badge"
+                       decoration-success="uts_verme_turu == 'verme'"
+                       decoration-warning="uts_verme_turu == 'tanimsiz'"
+                       decoration-info="uts_verme_turu == 'tuketici'"/>
             </xpath>
         </field>
     </record>

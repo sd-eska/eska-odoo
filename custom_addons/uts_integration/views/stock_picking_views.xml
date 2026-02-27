@@ -5,20 +5,54 @@
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.view_picking_form"/>
         <field name="arch" type="xml">
+            <!-- Header butonları -->
             <xpath expr="//header" position="inside">
                 <button name="action_uts_verme_bildirimi" 
-                        string="ÜTS'ye Bildir" 
+                        string="ÜTS Verme Bildir" 
                         type="object" 
                         class="oe_highlight" 
                         invisible="state != 'done' or picking_type_code != 'outgoing' or uts_sync_state == 'sent'"/>
+                <button name="action_uts_alim_bildirimi" 
+                        string="ÜTS Alım Bildir" 
+                        type="object" 
+                        class="oe_highlight" 
+                        invisible="state != 'done' or picking_type_code != 'incoming' or uts_sync_state == 'sent'"/>
+                <button name="action_uts_iade_bildirimi"
+                        string="ÜTS İade Bildir"
+                        type="object"
+                        class="btn-warning"
+                        invisible="state != 'done' or not uts_iade_tipi or uts_sync_state == 'sent'"/>
             </xpath>
+
+            <!-- ÜTS durum alanları -->
             <xpath expr="//field[@name='picking_type_id']" position="after">
                 <field name="uts_sync_state" widget="badge" 
-                       decoration-info="uts_sync_state == 'pending'"
+                       decoration-info="uts_sync_state == 'draft'"
                        decoration-success="uts_sync_state == 'sent'"
                        decoration-danger="uts_sync_state == 'failed'"
-                       invisible="picking_type_code != 'outgoing'"/>
-                <field name="uts_last_response" invisible="not uts_last_response or picking_type_code != 'outgoing'"/>
+                       invisible="picking_type_code not in ('outgoing', 'incoming')"/>
+                <field name="uts_last_response" invisible="not uts_last_response or picking_type_code not in ('outgoing', 'incoming')"/>
+            </xpath>
+
+            <!-- ÜTS verme/iade tipi + GBN alanları (notebook'tan önce) -->
+            <xpath expr="//page[@name='extra']" position="before">
+                <page string="ÜTS Ayarları" name="uts_settings"
+                      invisible="picking_type_code not in ('outgoing', 'incoming')">
+                    <group>
+                        <group string="Verme Ayarları" invisible="picking_type_code != 'outgoing'">
+                            <field name="uts_verme_tipi"
+                                   placeholder="Otomatik (müşteri kartına göre)"/>
+                            <field name="uts_gbn"
+                                   string="Gümrük Beyanname No"
+                                   invisible="uts_verme_tipi != 'ihracat'"
+                                   required="uts_verme_tipi == 'ihracat'"/>
+                        </group>
+                        <group string="İade Ayarları" invisible="picking_type_code != 'incoming'">
+                            <field name="uts_iade_tipi"
+                                   placeholder="Normal alım (iade değil)"/>
+                        </group>
+                    </group>
+                </page>
             </xpath>
         </field>
     </record>

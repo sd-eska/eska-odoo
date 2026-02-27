@@ -1,2 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_uts_log,uts.log,model_uts_log,base.group_user,1,1,1,1
+access_uts_bildirim_sorgu,uts.bildirim.sorgu,model_uts_bildirim_sorgu,base.group_user,1,1,1,1
+access_uts_bildirim_sorgu_line,uts.bildirim.sorgu.line,model_uts_bildirim_sorgu_line,base.group_user,1,1,1,1

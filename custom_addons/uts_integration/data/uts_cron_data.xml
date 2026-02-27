@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <!-- 
-            ÜTS Cron Job'ları devre dışı bırakıldı.
-            Sistem artık event-driven çalışıyor:
-            Kullanıcı "ÜTS'ye Bildir" butonuna basınca doğrudan gönderim yapılır.
-            Cron'a gerek yoktur.
-        -->
+        <!-- Eski event-driven cron'lar devre dışı -->
         <record id="ir_cron_process_uts_uretim" model="ir.cron">
             <field name="name">ÜTS: Üretim Bildirimlerini İşle</field>
             <field name="active" eval="False"/>
@@ -15,6 +10,19 @@
         <record id="ir_cron_process_uts_verme" model="ir.cron">
             <field name="name">ÜTS: Verme Bildirimlerini İşle</field>
             <field name="active" eval="False"/>
+        </record>
+
+        <!-- Log Temizleme: 30 günden eski başarılı kayıtları siler -->
+        <record id="ir_cron_uts_log_cleanup" model="ir.cron">
+            <field name="name">ÜTS: Eski Logları Temizle</field>
+            <field name="active" eval="True"/>
+            <field name="model_id" ref="model_uts_log"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_cleanup_old_logs()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">weeks</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
         </record>
     </data>
 </odoo>
