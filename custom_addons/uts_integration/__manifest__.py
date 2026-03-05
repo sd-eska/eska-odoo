@@ -20,13 +20,13 @@
         - HEK/Zayiat (3.1.17)                   — stock.scrap
         - Bildirim Sorgula (3.4.9)              — wizard
 
-        Mimari:
+        Mimari (modül kökünde):
         core/       → HTTP transport + loglama
         builders/   → Payload builder mixin'leri (bildirim başına dosya)
         validators/ → Alan kuralları + hata kodu çevirisi
         client/     → ÜTS endpoint tanımları
         engine/     → Gönderim motoru (pipeline)
-        extensions/ → Odoo model genişletmeleri + wizard
+        models/     → Odoo model genişletmeleri + wizard
     """,
     'author': 'Suayb Demir',
     'depends': ['base', 'product', 'stock', 'mrp'],
