@@ -15,7 +15,7 @@ class HekBuilderMixin:
         Kutu ürünlerde (x_product_box=True) BOM satırları üzerinden her alt ürün
         için ayrı payload üretilir.
         """
-        from .base_builder import LNO_MAX, DTA_MAX
+        from .uts_base_builder import LNO_MAX, DTA_MAX
 
         product = scrap.product_id
         lot = self._cut(scrap.lot_id.name if scrap.lot_id else None, LNO_MAX)

@@ -2,7 +2,7 @@ from odoo import models, fields, _
 from odoo.exceptions import UserError
 import logging
 from datetime import datetime
-from ..validators.error_codes import parse_uts_response
+from .uts_error_codes import parse_uts_response
 
 _logger = logging.getLogger(__name__)
 

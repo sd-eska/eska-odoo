@@ -16,7 +16,7 @@ class IhracatBuilderMixin:
         """
         from odoo import _
         from odoo.exceptions import UserError
-        from .base_builder import SNO_MAX
+        from .uts_base_builder import SNO_MAX
 
         GBN = (picking.uts_gbn or '').strip()
         if not GBN:

@@ -136,4 +136,3 @@ SPECS = {
     'tanimsiz_yerden_iade': TANIMSIZ_YERDEN_IADE,
     'bildirim_sorgula': BILDIRIM_SORGULA,
 }
-

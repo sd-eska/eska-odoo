@@ -47,7 +47,7 @@ class VermeBuilderMixin:
         """Tanımsız Yere Verme: KUN yok, VKN'li firmaya."""
         from odoo import _
         from odoo.exceptions import UserError
-        from .base_builder import BNO_MAX
+        from .uts_base_builder import BNO_MAX
 
         partner = picking.partner_id
         VKN = (partner.vat or '').strip() or (partner.commercial_partner_id.vat or '').strip()

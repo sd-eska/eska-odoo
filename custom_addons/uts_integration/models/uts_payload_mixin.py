@@ -1,11 +1,11 @@
 from odoo import models
-from .uretim_builder import UretimBuilderMixin
-from .verme_builder import VermeBuilderMixin
-from .alim_builder import AlimBuilderMixin
-from .hek_builder import HekBuilderMixin
-from .ihracat_builder import IhracatBuilderMixin
-from .kozmetik_builder import KozmetikBuilderMixin
-from .iade_builder import IadeBuilderMixin
+from .uts_uretim_builder import UretimBuilderMixin
+from .uts_verme_builder import VermeBuilderMixin
+from .uts_alim_builder import AlimBuilderMixin
+from .uts_hek_builder import HekBuilderMixin
+from .uts_ihracat_builder import IhracatBuilderMixin
+from .uts_kozmetik_builder import KozmetikBuilderMixin
+from .uts_iade_builder import IadeBuilderMixin
 
 
 class UtsPayloadMixin(

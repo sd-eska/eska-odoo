@@ -20,7 +20,7 @@ class UretimBuilderMixin:
         """
         from odoo import _
         from odoo.exceptions import UserError
-        from .base_builder import LNO_MAX, SNO_MAX
+        from .uts_base_builder import LNO_MAX, SNO_MAX
 
         payloads = []
         finished_moves = production.move_finished_ids.filtered(

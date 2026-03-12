@@ -15,7 +15,7 @@ class AlimBuilderMixin:
         """
         from odoo import _
         from odoo.exceptions import UserError
-        from .base_builder import SNO_MAX
+        from .uts_base_builder import SNO_MAX
 
         payloads = []
         for move in picking.move_ids.filtered(lambda m: m.product_id.is_uts_tracked):

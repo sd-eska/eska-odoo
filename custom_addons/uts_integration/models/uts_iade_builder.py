@@ -20,7 +20,7 @@ class IadeBuilderMixin:
         """
         from odoo import _
         from odoo.exceptions import UserError
-        from .base_builder import SNO_MAX
+        from .uts_base_builder import SNO_MAX
 
         payloads = []
         for move in picking.move_ids.filtered(lambda m: m.product_id.is_uts_tracked):
@@ -55,7 +55,7 @@ class IadeBuilderMixin:
         Yol 1: Orijinal bildirim BID'si (UTI) varsa → UTI + ADT
         Yol 2: BID yoksa → UNO + LNO/SNO + ADT
         """
-        from .base_builder import SNO_MAX
+        from .uts_base_builder import SNO_MAX
 
         payloads = []
         for move in picking.move_ids.filtered(lambda m: m.product_id.is_uts_tracked):

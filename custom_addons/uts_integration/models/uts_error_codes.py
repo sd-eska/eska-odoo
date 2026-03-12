@@ -104,4 +104,3 @@ def parse_uts_response(response_json):
                 })
 
     return result
-
